@@ -1,3 +1,4 @@
+/* 기본 스타일 설정 */
 body {
   margin: 0;
   padding: 0;
@@ -20,9 +21,10 @@ body {
 }
 
 .card-container {
-  width: 500px;
-  height: 600px;
-  position: relative;
+  width: 100%;
+  max-width: 500px; /* 최대 너비를 설정하여 큰 화면에서만 카드가 커지도록 */
+  height: auto;
+  aspect-ratio: 5 / 6; /* 카드 비율을 유지합니다 (가로:세로 비율) */
 }
 
 .card {
@@ -44,19 +46,22 @@ body {
   justify-content: center;
   align-items: center;
   border-radius: 15px;
-  background-color: white;
+  background-color: white; /* 배경색 설정 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box; /* 패딩과 경계를 포함한 크기 조정 */
+  z-index: 1; /* 배경색이 항상 카드 안에서 보이도록 설정 */
 }
 
 .card-front img {
-  width: 450px;
-  height: 450px;
+  width: 100%;
+  height: auto; /* 이미지 높이는 자동으로 조정 */
+  max-width: 450px;
   border-radius: 50%;
 }
 
 .card button {
-  width: 300px;
-  padding: 20px;
+  width: 100%; /* 버튼 너비를 카드의 너비에 맞게 조정 */
+  padding: 15px; /* 모바일에서도 버튼 패딩 조정 */
   margin-top: 20px;
   border-radius: 10px;
   border: none;
@@ -76,10 +81,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: flex-start; /* 수평 방향에서 왼쪽 정렬 */
+  align-items: flex-start;
   padding: 20px;
   font-size: 24px;
   text-align: left;
+  box-sizing: border-box; /* 패딩과 경계를 포함한 크기 조정 */
 }
 
 .card-back h3 {
@@ -88,15 +94,71 @@ body {
 
 .card-back p {
   font-family: "Nanum Brush Script", cursive;
-  line-height: 2;
+  line-height: 1.5; /* 줄 간격 조정 */
+  word-wrap: break-word; /* 긴 단어가 잘리지 않도록 설정 */
 }
 
 .card-back p span {
   display: block;
   text-align: right;
-  margin-top: 100px;
+  margin-top: 20px; /* 너무 많은 여백을 줄여서 공간을 확보 */
 }
 
 .card.flipped {
   transform: rotateY(180deg); /* 카드 전체를 회전 */
+}
+
+/* 모바일 화면에서의 스타일 */
+@media (max-width: 768px) {
+  .card-container {
+    max-width: 90%; /* 모바일에서 카드의 너비를 줄입니다 */
+    height: auto;
+    aspect-ratio: 5 / 6; /* 카드 비율을 유지합니다 */
+  }
+
+  .card-front,
+  .card-back {
+    background-color: white; /* 모바일 화면에서도 배경색 유지 */
+    z-index: 1; /* 카드의 배경색이 다른 요소들에 의해 가려지지 않도록 */
+  }
+
+  .card-front img {
+    max-width: 80%; /* 모바일에서 이미지의 최대 너비를 줄입니다 */
+  }
+
+  .card button {
+    width: 100%; /* 버튼 너비를 화면에 맞게 조정 */
+    font-size: 16px; /* 모바일 화면에서 글꼴 크기 조정 */
+  }
+
+  .card-back {
+    font-size: 18px; /* 모바일 화면에서 글꼴 크기 조정 */
+  }
+}
+
+/* 아이폰 12 Pro와 같은 고해상도 모바일 장치에 대한 스타일 */
+@media (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+  .card-container {
+    max-width: 90%; /* 아이폰 12 Pro에서 카드 너비 조정 */
+    aspect-ratio: 5 / 6; /* 카드 비율 유지 */
+  }
+
+  .card-front,
+  .card-back {
+    background-color: white; /* 아이폰 12 Pro에서도 배경색 유지 */
+    z-index: 1; /* 카드의 배경색이 항상 보이도록 설정 */
+  }
+
+  .card-front img {
+    max-width: 80%; /* 아이폰 12 Pro에서 이미지의 최대 너비 조정 */
+  }
+
+  .card button {
+    width: 100%; /* 버튼 너비를 화면에 맞게 조정 */
+    font-size: 16px; /* 아이폰 12 Pro에서 글꼴 크기 조정 */
+  }
+
+  .card-back {
+    font-size: 18px; /* 아이폰 12 Pro에서 글꼴 크기 조정 */
+  }
 }
