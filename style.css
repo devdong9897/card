@@ -135,7 +135,7 @@ body {
   }
 
   .card-front img {
-    max-width: 80%; /* 모바일에서 이미지의 최대 너비를 줄입니다 */
+    max-width: 80%; 
   }
 
   .card button {
